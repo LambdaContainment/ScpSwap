@@ -55,8 +55,8 @@ namespace ScpSwap
             if (TranslatableSwaps.TryGetValue(request, out RoleTypeId roleType))
                 return roleType;
 
-            if (Enum.TryParse(request, true, out roleType) && DefaultSwaps.Contains(roleType))
-                return roleType;
+            //if (Enum.TryParse(request, true, out roleType) && DefaultSwaps.Contains(roleType))
+            //    return roleType;
 
             return RoleTypeId.None;
         }
