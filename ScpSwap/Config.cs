@@ -67,6 +67,13 @@ namespace ScpSwap
         };
 
         /// <summary>
+        /// Gets or sets a value indicating whether swapping to SCP-3114 is allowed.
+        /// </summary>
+        /// 
+        [Description("Allows or disallows swapping to SCP-3114.")]
+        public bool AllowSkeleton { get; set; } = false;
+        
+        /// <summary>
         /// Gets or sets a value indicating whether swapping with human players is allowed.
         /// </summary>
         [Description("Allows or disallows swapping with human players.")]

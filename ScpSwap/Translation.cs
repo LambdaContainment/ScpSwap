@@ -49,37 +49,37 @@ namespace ScpSwap
         /// Gets or sets the message to be displayed to all Scp subjects at the start of the round.
         /// </summary>
         [Description("The message to be displayed to all Scp subjects at the start of the round.")]
-        public Broadcast StartMessage { get; set; } = new Broadcast("<color=yellow><b>Did you know you can swap classes with other SCP's?</b></color> Simply type <color=orange>.scpswap (role number)</color> in your in-game console (not RA) to swap!", 15);
+        public Broadcast StartMessage { get; set; } = new Broadcast("<color=yellow><b>Você sabia que você pode trocar de SCP?</b></color> Simplesmente digite <color=orange>.trocar (número do SCP)</color> no seu console (não o RA)!", 15);
 
         /// <summary>
         /// Gets or sets the broadcast to display to the receiver of a swap request.
         /// </summary>
         [Description("The broadcast to display to the receiver of a swap request.")]
-        public Broadcast RequestBroadcast { get; set; } = new Broadcast("<i>You have an SCP Swap request!\nCheck your console by pressing [`] or [~]</i>", 5);
+        public Broadcast RequestBroadcast { get; set; } = new Broadcast("<i>Você tem uma solicitação de troca de SCP!\nVerifique seu console pressionando [`] ou [~]</i>", 5);
 
         /// <summary>
         /// Gets or sets the console message to send to the receiver of a swap request.
         /// </summary>
         [Description("The console message to send to the receiver of a swap request.")]
-        public ConsoleMessage RequestConsoleMessage { get; set; } = new ConsoleMessage("You have received a swap request from $SenderName who is $RoleName. Would you like to swap with them? Type \".scpswap accept\" to accept or \".scpswap decline\" to decline.", "yellow");
+        public ConsoleMessage RequestConsoleMessage { get; set; } = new ConsoleMessage("Você recebeu uma solicitação de troca de $SenderName que é $RoleName. Gostaria de trocar com ele? Digite \".trocar aceitar\" para aceitar ou \".trocar recusar\" para recusar.", "yellow");
 
         /// <summary>
         /// Gets or sets the console message to send to players when the swap succeeds.
         /// </summary>
         [Description("The console message to send to players when the swap succeeds.")]
-        public ConsoleMessage SwapSuccessful { get; set; } = new ConsoleMessage("Swap successful!", "green");
+        public ConsoleMessage SwapSuccessful { get; set; } = new ConsoleMessage("Troca bem sucedida!", "green");
 
         /// <summary>
         /// Gets or sets the console message to send to the receiver of a swap request that has timed out.
         /// </summary>
         [Description("The console message to send to the receiver of a swap request that has timed out.")]
-        public ConsoleMessage TimeoutReceiver { get; set; } = new ConsoleMessage("Your swap request has timed out.", "red");
+        public ConsoleMessage TimeoutReceiver { get; set; } = new ConsoleMessage("Sua solicitação de troca expirou.", "red");
 
         /// <summary>
         /// Gets or sets the console message to send to the sender of a swap request that has timed out.
         /// </summary>
         [Description("The console message to send to the sender of a swap request that has timed out.")]
-        public ConsoleMessage TimeoutSender { get; set; } = new ConsoleMessage("The player did not respond to your request.", "red");
+        public ConsoleMessage TimeoutSender { get; set; } = new ConsoleMessage("O jogador não respondeu à sua solicitação.", "red");
 
         /// <summary>
         /// Gets or sets the various command instances to be translated.
@@ -87,19 +87,22 @@ namespace ScpSwap
         [Description("The various command instances to be translated.")]
         public CommandTranslations CommandTranslations { get; set; } = new CommandTranslations();
         
-        public string ExecutorIsntPlayer { get; set; } = "Command must be executed in-game.";
-        public string RoundIsntStarted { get; set; } = "The round has not yet started.";
-        public string SwapPeriodEnded { get; set; } = "The swap period has ended.";
-        public string AllowUserSwapByPermission { get; set; } = "You do not have permission to use this command.";
-        public string NotAnScp { get; set; } = "You must be an Scp to use this command.";
-        public string AlreadyHasPendingRequest { get; set; } = "You already have a pending swap request!";
-        public string CannotSwapWithYourself { get; set; } = "You cannot swap with yourself.";
-        public string CannotSwapOffThisScp { get; set; } = "You're not allowed to swap off from this SCP.";
-        public string RequestSent { get; set; } = "Swap request sent!";
-        public string CannotFindRole { get; set; } = "Cannot find the specified role";
-        public string SuccessfulSwap { get; set; } = "Swap successful.";
-        public string CannotFindPlayerWithRole { get; set; } = "Unable to locate a player with the requested role.";
-        public string NoPendingRequest { get; set; } = "You do not have a pending swap request.";
-        public string SwapRequestCancelled { get; set; } = "Swap request cancelled.";
+        public string NotEnoughScpsTo079 { get; set; } = "Você não pode trocar para SCP-079 porque não há SCPs suficientes na rodada.";
+        public string CantSwapTo3114 { get; set; } = "Você não pode trocar para SCP-3114, bobinho.";
+        public string CantSwapTo0492 { get; set; } = "Você não pode trocar para SCP-049-2, bobinho.";
+        public string ExecutorIsntPlayer { get; set; } = "O comando deve ser executado no jogo.";
+        public string RoundIsntStarted { get; set; } = "A rodada ainda não começou.";
+        public string SwapPeriodEnded { get; set; } = "O período de troca terminou.";
+        public string AllowUserSwapByPermission { get; set; } = "Você não tem permissão para usar este comando.";
+        public string NotAnScp { get; set; } = "Você deve ser um SCP para usar este comando.";
+        public string AlreadyHasPendingRequest { get; set; } = "Você já tem uma solicitação de troca pendente!";
+        public string CannotSwapWithYourself { get; set; } = "Você não pode trocar com você mesmo.";
+        public string CannotSwapOffThisScp { get; set; } = "Você não tem permissão para trocar deste SCP.";
+        public string RequestSent { get; set; } = "Solicitação de troca enviada!";
+        public string CannotFindRole { get; set; } = "Não foi possível encontrar o cargo especificado";
+        public string SuccessfulSwap { get; set; } = "Troca bem sucedida.";
+        public string CannotFindPlayerWithRole { get; set; } = "Não foi possível localizar um jogador com o cargo solicitado.";
+        public string NoPendingRequest { get; set; } = "Você não tem uma solicitação de troca pendente.";
+        public string SwapRequestCancelled { get; set; } = "Solicitação de troca cancelada.";
     }
 }

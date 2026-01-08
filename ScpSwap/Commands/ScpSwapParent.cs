@@ -29,13 +29,16 @@ namespace ScpSwap.Commands
         public ScpSwapParent() => LoadGeneratedCommands();
 
         /// <inheritdoc />
-        public override string Command => "scpswap";
+        public override string Command => "swap";
 
         /// <inheritdoc />
-        public override string[] Aliases { get; } = { "swap" };
+        public override string[] Aliases { get; } = { "trocar" };
 
         /// <inheritdoc />
-        public override string Description => "Base command for ScpSwap.";
+        public int scpCount = Player.List.Count(player => player.IsScp && player.Role != RoleTypeId.Scp0492);
+
+        /// <inheritdoc />
+        public override string Description => "Comando base do SCPSwap, utilize .trocar e o número do SCP";
 
         /// <inheritdoc />
         public sealed override void LoadGeneratedCommands()
@@ -74,6 +77,27 @@ namespace ScpSwap.Commands
             {
                 response = $"Usage: .{Command} ScpNumber";
                 return false;
+            }
+
+            string request = arguments.At(0).ToLower();
+
+            // Broken (I'm fuckin retard)
+            // if (request == "random")
+            // {
+            //     request = ValidSwaps.GetRandomSwap(playerSender);
+            //     if (string.IsNullOrEmpty(request))
+            //     {
+            //         response = Plugin.Instance.Translation.NoValidSwapsAvailable;
+            //         return false;
+            //     }
+            // }
+            if (Plugin.Instance.Translation.TranslatableSwaps.TryGetValue(request, out RoleTypeId targetRole))
+            {
+                if (!CanSwapToRole(targetRole, out string reason))
+                {
+                    response = reason;
+                    return false;
+                }
             }
 
             if (Plugin.Instance.Config.AllowUserSwapByPermission)
@@ -152,6 +176,38 @@ namespace ScpSwap.Commands
 
             spawnMethod = null;
             return null;
+        }
+
+        private bool CanSwapToRole(RoleTypeId targetRole, out string reason)
+        {
+            if (targetRole == RoleTypeId.Scp079)
+            {
+                int scpCount = Player.List.Count(player => player.IsScp && player.Role != RoleTypeId.Scp0492);
+
+                if (scpCount <= 2)
+                {
+                    reason = Plugin.Instance.Translation.NotEnoughScpsTo079;
+                    return false;
+                }
+            }
+
+            if (targetRole == RoleTypeId.Scp0492)
+            {
+                reason = Plugin.Instance.Translation.CantSwapTo0492;
+                return false;
+            }
+
+            if (Plugin.Instance.Config.AllowSkeleton == false)
+            {
+                if (targetRole == RoleTypeId.Scp3114)
+                {
+                    reason = Plugin.Instance.Translation.CantSwapTo3114;
+                    return false;
+                }
+            }
+
+            reason = string.Empty;
+            return true;
         }
     }
 }

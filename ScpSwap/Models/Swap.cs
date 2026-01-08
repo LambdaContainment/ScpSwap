@@ -10,6 +10,7 @@ namespace ScpSwap.Models
     using System.Collections.Generic;
     using Exiled.API.Features;
     using Exiled.Events.EventArgs;
+    using MEC;
     using Exiled.Events.EventArgs.Player;
 
     /// <summary>

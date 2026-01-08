@@ -62,6 +62,26 @@ namespace ScpSwap
         }
 
         /// <summary>
+        /// Gets a random default swap.
+        /// </summary>
+        /// <returns>A random <see cref="RoleTypeId"/> from <see cref="DefaultSwaps"/>.</returns>
+        public static RoleTypeId GetRandomSwap()
+        {
+            Random rand = new Random();
+
+            var validRoles = DefaultSwapsValue
+                .Where(role => role.GetTeam() == Team.SCPs
+                               && role != RoleTypeId.Scp079
+                               && role != RoleTypeId.Scp3114)
+                .ToList();
+
+            if (validRoles.Count == 0) return RoleTypeId.None;
+
+            int index = rand.Next(validRoles.Count);
+            return validRoles[index];
+        }
+
+        /// <summary>
         /// Returns a <see cref="CustomSwap"/> with a matching name to the provided one.
         /// </summary>
         /// <param name="name">The name to search for.</param>

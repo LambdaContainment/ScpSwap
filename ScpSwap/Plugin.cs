@@ -27,13 +27,13 @@ namespace ScpSwap
         public static Plugin Instance { get; private set; }
 
         /// <inheritdoc />
-        public override string Author => "Vicious Vikki";
+        public override string Author => "Vicious Vikki (Edited by Lambda Containment's Team)";
 
         /// <inheritdoc />
-        public override string Name => "ScpSwap";
+        public override string Name => "SCPSwap";
 
         /// <inheritdoc />
-        public override string Prefix => "ScpSwap";
+        public override string Prefix => "SCPSwap";
 
         /// <inheritdoc />
         public override Version RequiredExiledVersion { get; } = new Version(9, 9, 2);
