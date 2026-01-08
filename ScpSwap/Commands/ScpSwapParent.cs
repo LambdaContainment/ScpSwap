@@ -32,7 +32,7 @@ namespace ScpSwap.Commands
         public override string Command => "swap";
 
         /// <inheritdoc />
-        public override string[] Aliases { get; } = { "trocar" };
+        public override string[] Aliases { get; } = { "trocar", "t" };
 
         /// <inheritdoc />
         public int scpCount = Player.List.Count(player => player.IsScp && player.Role != RoleTypeId.Scp0492);
